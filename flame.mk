@@ -17,10 +17,29 @@ PRODUCT_COPY_FILES := \
     system/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
     device/t2m/flame/fstab.qcom:root/fstab.qcom \
     device/t2m/flame/init.target.rc:root/init.target.rc \
+    device/t2m/flame/etc/apns-conf.xml:system/etc/apns-conf.xml \
+    device/t2m/flame/Goodix-TS.kl:system/usr/keylayout/Goodix-TS.kl \
 
 TARGET_DEVICE_BLOBS := vendor/t2m/flame/flame-vendor-blobs.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
 $(call inherit-product-if-exists, $(TARGET_DEVICE_BLOBS))
+
+$(call inherit-product, frameworks/base/data/sounds/AudioPackage6.mk)
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
 
 PRODUCT_PROPERTY_OVERRIDES += \
   persist.radio.multisim.config=dsds \
@@ -43,7 +62,9 @@ PRODUCT_PACKAGES += \
   libnfc-pn547 \
   librecovery
 
-GAIA_DEV_PIXELS_PER_PX := 1.5
+DEVICE_PACKAGE_OVERLAYS += device/t2m/flame/overlay
+
+
 BOOTANIMATION_ASSET_SIZE := qHD
 
 PRODUCT_NAME := flame

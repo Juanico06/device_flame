@@ -20,8 +20,9 @@
 /**
  * B2G common configuration. The header is under
  *   $(GECKO_PATH)/dom/bluetooth/bluedroid/
+ * #include "b2g_bdroid_buildcfg.h"
  */
-#include "b2g_bdroid_buildcfg.h"
+
 
 /**
  * Device specific configuration
